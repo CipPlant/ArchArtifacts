@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"log"
 	"strconv"
+	"sync"
 )
 
 type NoSQLDatabase interface {
@@ -31,7 +32,8 @@ func NewFuzzyArtifactUseCase(nosqlRepository NoSQLDatabase, sqlRepo SqlDataBaseF
 	return &FuzzyArtifactUseCase{repo: nosqlRepository, sqlRepo: sqlRepo}
 }
 
-func (f FuzzyArtifactUseCase) FuzzySqlArtifactFind(ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error) {
+func (f FuzzyArtifactUseCase) FuzzySqlArtifactFind(wg *sync.WaitGroup, ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error) {
+	defer wg.Done()
 
 	fuzzyArtefact := model.NewFuzzyArtefact()
 	fuzzyArtefact.IntervalStart = input.IntervalStart
@@ -66,7 +68,9 @@ func (f FuzzyArtifactUseCase) FuzzySqlArtifactFind(ctx context.Context, input *d
 	return results, nil
 }
 
-func (f FuzzyArtifactUseCase) FindByInterval(ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error) {
+func (f FuzzyArtifactUseCase) FindByInterval(wg *sync.WaitGroup, ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error) {
+	defer wg.Done()
+
 	fuzzyArtefact := model.NewFuzzyArtefact()
 	fuzzyArtefact.IntervalStart = input.IntervalStart
 	fuzzyArtefact.IntervalEnd = input.IntervalEnd

@@ -11,12 +11,13 @@ import (
 	"net/http"
 	"sort"
 	"strconv"
+	"sync"
 	"time"
 )
 
 type FuzzyUseCase interface {
-	FindByInterval(ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error)
-	FuzzySqlArtifactFind(ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error)
+	FindByInterval(wg *sync.WaitGroup, ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error)
+	FuzzySqlArtifactFind(wg *sync.WaitGroup, ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error)
 }
 
 func FuzzyHandler(us FuzzyUseCase) http.HandlerFunc {
@@ -60,8 +61,21 @@ func FuzzyHandler(us FuzzyUseCase) http.HandlerFunc {
 		ctx, cancelFunc := context.WithTimeout(context.Background(), 3*time.Second)
 		defer cancelFunc()
 
-		sqlResult, sqlErr := us.FuzzySqlArtifactFind(ctx, input)
-		mongoResult, mongoErr := us.FindByInterval(ctx, input)
+		var sqlResult, mongoResult []dto.FuzzyArtefactOutput
+		var sqlErr, mongoErr error
+		wg := &sync.WaitGroup{}
+
+		wg.Add(2)
+
+		go func() {
+			sqlResult, sqlErr = us.FuzzySqlArtifactFind(wg, ctx, input)
+		}()
+
+		go func() {
+			mongoResult, mongoErr = us.FindByInterval(wg, ctx, input)
+		}()
+
+		wg.Wait()
 
 		if sqlErr != nil || mongoErr != nil {
 			switch {
