@@ -1,0 +1,273 @@
+#vek {
+    font-size: 14.9px;
+}
+
+.input-container {
+    width: 180px;
+    height: 50px;
+    display: inline-block;
+    margin: 0 10px;
+    padding: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    outline: none;
+    text-align: center;
+
+    font-family: "Cinzel Decorative", cursive;
+    font-size: 17px;
+    background-color: transparent;
+}
+input[type="text"]::-webkit-inner-spin-button,
+input[type="text"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+
+#intervalSearch button {
+    display: block;
+    margin: 0 auto;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#intervalSearch button:hover {
+    background-color: #e74c3c;
+}
+
+.slider-container {
+    position: relative;
+    margin-right: 10px;
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 12px;
+}
+
+.slider-button {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #3498db;
+    cursor: pointer;
+    transition: 0.2s;
+    left: 0;
+}
+
+.slider-button.right {
+    left: 24px;
+    background-color: #e74c3c;
+}
+
+body {
+    background-image: url('https://kassa.rambler.ru/s/StaticContent/P/Aimg/2205/20/220520002205451.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: gradient 10s ease infinite;
+
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#results-container {
+    display: none;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    overflow-y: auto;
+}
+
+.text-container {
+    margin-left: 10px;
+}
+
+.result-item {
+    position: relative;
+    max-width: 600px;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    display: flex;
+    padding: 10px;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.result-item::before {
+    content: "";
+    background-image: url("https://f.vividscreen.info/soft/48218af18589c9848564daa93e3a41f4/Stone-Wall-2880x1920.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+
+    opacity: 0.8;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.result-item h2 {
+    font-family: "Cinzel Decorative", cursive;
+    font-size: 18px;
+    margin: 0;
+}
+
+.result-item p {
+    font-family: "Cinzel Decorative", cursive;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.result-item descr {
+    font-size: 18px;
+    margin: 0;
+}
+
+.expand-button {
+    color: blue;
+    font-size: 16px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    margin-left: 4px;
+    margin-right: 2px;
+    padding: 0;
+}
+
+.expand-button:hover {
+    background: none;
+}
+
+
+.result-item img {
+
+    max-width: 500px;
+    max-height: 500px;
+    margin: 0 auto;
+
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    transition: transform 0.2s ease-in-out;
+    filter: grayscale(20%) brightness(100%);
+    margin-bottom: 10px;
+    margin-top: 25px;
+}
+
+.result-item img:hover {
+    transform: scale(1.09);
+    filter: grayscale(0%) brightness(120%);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+h1 {
+    font-family: "Cinzel Decorative", cursive;
+    color: #777;
+    font-size: 30px;
+    text-align: center;
+}
+
+.search-form {
+
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 700px;
+
+}
+
+.input-group {
+
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.label {
+    margin-right: 20px;
+    color: #555;
+    font-size: 24px;
+}
+
+.select-container {
+    margin-left: 5px;
+    margin-right: 5px;
+
+    width: 250px;
+    position: relative;
+
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    color: #555;
+    text-align: center;
+    font-family: "Cinzel Decorative", cursive;
+    font-size: 16px;
+}
+
+#interval,
+#interval2 {
+    margin-right: 20px;
+    font-size: 14px;
+    width: 270px;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #3498db;
+}

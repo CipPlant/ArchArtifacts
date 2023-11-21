@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="search-form">
+        <div class="slider-container" id="toggleSearchContainer">
+            <div class="slider-button" id="toggleSearchButton"></div>
+        </div>
+        <h1>Поиск архитектурных артефактов</h1>
+        <form id="searchForm">
+            <div class="input-group">
+                <label for="vek"></label>
+                <div class="select-container">
+                    <select id="vek" name="vek">
+                        <option value=""> Выберите век </option>
+                        <option value="1">I Век</option>
+                        <option value="2">II Век</option>
+                        <option value="3">III Век</option>
+                        <option value="4">IV Век</option>
+                        <option value="5">V Век</option>
+                        <option value="6">VI Век</option>
+                        <option value="7">VII Век</option>
+                        <option value="8">VIII Век</option>
+                        <option value="9">IX Век</option>
+                        <option value="10">X Век</option>
+                        <option value="11">XI Век</option>
+                        <option value="12">XII Век</option>
+                        <option value="13">XIII Век</option>
+                        <option value="14">XIV Век</option>
+                        <option value="15">XV Век</option>
+                        <option value="16">XVI Век</option>
+                        <option value="17">XVII Век</option>
+                        <option value="18">XVIII Век</option>
+                        <option value="19">XIX Век</option>
+                        <option value="20">XX Век</option>
+                        <option value="21">XXI Век</option>
+                    </select>
+                </div>
+                <label for="interval"></label>
+                <div class="select-container">
+                    <select id="interval" name="interval" disabled>
+                        <option value=""> Выберите интервал века </option>
+                        <option value="start">Начало</option>
+                        <option value="middle">Середина</option>
+                        <option value="end">Конец</option>
+                        <option value="firstMiddle">Первая половина</option>
+                        <option value="secondMiddle">Вторая половина</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="desyat"></label>
+                <div class="select-container">
+                    <select id="desyat" name="desyat" disabled>
+                        <option value=""> Выберите десятилетие </option>
+                        <option value="1">1 Десятилетие</option>
+                        <option value="2">2 Десятилетие</option>
+                        <option value="3">3 Десятилетие</option>
+                        <option value="4">4 Десятилетие</option>
+                        <option value="5">5 Десятилетие</option>
+                        <option value="6">6 Десятилетие</option>
+                        <option value="7">7 Десятилетие</option>
+                        <option value="8">8 Десятилетие</option>
+                        <option value="9">9 Десятилетие</option>
+                        <option value="10">10 Десятилетие</option>
+                    </select>
+                </div>
+                <label for="interval2"></label>
+                <div class="select-container">
+                    <select id="interval2" name="interval2" disabled>
+                        <option value=""> Выберите интервал десятилетия </option>
+                        <option value="start">Начало</option>
+                        <option value="middle">Середина</option>
+                        <option value="end">Конец</option>
+                        <option value="firstMiddle">Первая половина</option>
+                        <option value="secondMiddle">Вторая половина</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="god"></label>
+                <div class="select-container">
+                    <select id="god" name="god" disabled>
+                        <option value=""> Выберите год </option>
+                        <option value="0">0 Год</option>
+                        <option value="1">1 Год</option>
+                        <option value="2">2 Год</option>
+                        <option value="3">3 Год</option>
+                        <option value="4">4 Год</option>
+                        <option value="5">5 Год</option>
+                        <option value="6">6 Год</option>
+                        <option value="7">7 Год</option>
+                        <option value="8">8 Год</option>
+                        <option value="9">9 Год</option>
+                        <option value="10" disabled>10 Год</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" id="searchButton">Поиск</button>
+        </form>
+        <form id="intervalSearchForm">
+            <div id="intervalSearch" style="display: none;">
+                <div class="input-container">
+                    <input type="text" id="intervalStart" name="intervalStart" placeholder="Год начала" oninput="limitToFourDigits(this)">
+                </div>
+                <span>&nbsp;-&nbsp;</span>
+                <div class="input-container">
+                    <input type="text" id="intervalEnd" name="intervalEnd" placeholder="Год окончания" oninput="limitToFourDigits(this)">
+                </div>
+                <button type="submit" id="intervalButton">Поиск</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="results-container">
+        <!-- Результаты поиска будут отображены здесь -->
+        <ul id="results-list"></ul>
+    </div>
+
+    <script>
+        function limitToFourDigits(input) {
+            input.value = input.value.replace(/\D/g, '').slice(0, 4); // Удаляем все символы, кроме цифр и обрезаем до 4 символов
+        }
+    </script>
+    <script src="/static/model.js"></script>
+</div>
+</body>
+</html>

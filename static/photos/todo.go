@@ -1,0 +1,3 @@
+package photos
+
+// TODO: implement S3 instead this package:) ...
