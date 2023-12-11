@@ -18,7 +18,7 @@ func consistCenturyRune(description string) string {
 	return ""
 }
 
-func BuildingAge(description string, interval1, interval2 int) string {
+func BuildingAge(description string, interval1, interval2 int16) string {
 	switch {
 	case interval1 == 0:
 		if description == "" {

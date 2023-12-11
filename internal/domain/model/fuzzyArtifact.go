@@ -1,12 +1,12 @@
 package model
 
 type FuzzyArchitecturalArtifact struct {
+	Membership     float64
 	Name           string `bson:"name"`
-	IntervalStart  int    `bson:"start_date"`
-	IntervalEnd    int    `bson:"interval_end"`
 	Description    string `bson:"description"`
 	AdditionalInfo string `bson:"addition"`
-	Membership     float64
+	IntervalStart  int16  `bson:"start_date"`
+	IntervalEnd    int16  `bson:"interval_end"`
 }
 
 func NewFuzzyArtefact() *FuzzyArchitecturalArtifact {

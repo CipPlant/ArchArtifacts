@@ -2,7 +2,7 @@ package mongoFilter
 
 import "go.mongodb.org/mongo-driver/bson"
 
-func SearchFiler(a, b int) bson.M {
+func SearchFiler(a, b int16) bson.M {
 	filter := bson.M{
 		"$or": []bson.M{
 			{

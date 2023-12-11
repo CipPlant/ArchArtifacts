@@ -1,8 +1,8 @@
 package dto
 
 type FuzzyArtifactInput struct {
-	IntervalStart int `json:"intervalStart"`
-	IntervalEnd   int `json:"intervalEnd"`
+	IntervalStart int16 `json:"intervalStart"`
+	IntervalEnd   int16 `json:"intervalEnd"`
 }
 
 type FuzzyArtefactOutput struct {

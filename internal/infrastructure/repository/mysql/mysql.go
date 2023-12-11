@@ -201,7 +201,7 @@ func (r *MySQLRepository) FuzzyFindByDecade(century, decade string, startYear, e
 }
 
 func (r *MySQLRepository) ForFuzzyArtifactFind(
-	sqlVekStart, sqlDecadeStart, sqlYearStart, sqlVekEnd, sqlDecadeEnd, sqlYearEnd int) ([]model.Artifact, error) {
+	sqlVekStart, sqlDecadeStart, sqlYearStart, sqlVekEnd, sqlDecadeEnd, sqlYearEnd int16) ([]model.Artifact, error) {
 	prepare, err := r.db.Prepare(
 		"SELECT Название, Век, Десятилетие, Год, Описание" +
 			" FROM Buildings" +

@@ -4,7 +4,7 @@ import (
 	"akim/internal/domain/model"
 )
 
-func CalculateMembership(building *model.FuzzyArchitecturalArtifact, intervalStart, intervalEnd int) float64 {
+func CalculateMembership(building *model.FuzzyArchitecturalArtifact, intervalStart, intervalEnd int16) float64 {
 	if building.IntervalEnd == 0 {
 		return 1 / float64(intervalEnd-intervalStart)
 	}

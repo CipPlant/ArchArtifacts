@@ -20,7 +20,7 @@ type NoSQLDatabase interface {
 
 type SqlDataBaseForInterval interface {
 	ForFuzzyArtifactFind(
-		sqlVekStart, sqlDecadeStart, sqlYearStart, sqlVekEnd, sqlDecadeEnd, sqlYearEnd int) ([]model.Artifact, error)
+		sqlVekStart, sqlDecadeStart, sqlYearStart, sqlVekEnd, sqlDecadeEnd, sqlYearEnd int16) ([]model.Artifact, error)
 }
 
 type FuzzyArtifactUseCase struct {

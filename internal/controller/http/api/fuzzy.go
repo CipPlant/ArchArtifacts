@@ -15,6 +15,10 @@ import (
 	"time"
 )
 
+func fib() {
+
+}
+
 type FuzzyUseCase interface {
 	FindByInterval(wg *sync.WaitGroup, ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error)
 	FuzzySqlArtifactFind(wg *sync.WaitGroup, ctx context.Context, input *dto.FuzzyArtifactInput) ([]dto.FuzzyArtefactOutput, error)
@@ -29,13 +33,14 @@ func FuzzyHandler(us FuzzyUseCase) http.HandlerFunc {
 		input := &dto.FuzzyArtifactInput{}
 		startStr := r.FormValue("startValue")
 		intValStart, err := strconv.Atoi(startStr)
+
 		if err != nil {
 			http.Error(rw,
 				"Ошибка в запросе. Неправильно заданы входные значения.",
 				http.StatusBadRequest)
 			return
 		}
-		input.IntervalStart = intValStart
+		input.IntervalStart = int16(intValStart)
 		endStr := r.FormValue("endValue")
 		intValEnd, err := strconv.Atoi(endStr)
 		if err != nil {
@@ -44,14 +49,14 @@ func FuzzyHandler(us FuzzyUseCase) http.HandlerFunc {
 				http.StatusBadRequest)
 			return
 		}
-		input.IntervalEnd = intValEnd
+		input.IntervalEnd = int16(intValEnd)
 
 		if input.IntervalStart > input.IntervalEnd {
 			http.Error(rw, fmt.Sprintf(
 				"Ошибка в запросе. Начальное значение больше конечного значения"),
 				http.StatusBadRequest)
 			return
-		} else if input.IntervalEnd > time.Now().Year() {
+		} else if input.IntervalEnd > int16(time.Now().Year()) {
 			http.Error(rw, fmt.Sprintf(
 				"Ошибка в запросе. Конечное значение года не может быть больше %d", time.Now().Year()),
 				http.StatusBadRequest)
